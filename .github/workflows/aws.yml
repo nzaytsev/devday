@@ -80,8 +80,8 @@ jobs:
     - name: Deploy to ECS cluster
       id: deploy
       run: |
-        aws ecs update-service --cluster ${{ inputs.ECS_CLUSTER }} --service ${{ inputs.ECS_SERVICE }} --force-new-deployment
-        aws ecs wait services-stable --cluster ${{ inputs.ECS_CLUSTER }} --services ${{ inputs.ECS_SERVICE }}
+        aws ecs update-service --cluster ${{ env.ECS_CLUSTER }} --service ${{ env.ECS_SERVICE }} --force-new-deployment
+        aws ecs wait services-stable --cluster ${{ env.ECS_CLUSTER }} --services ${{ env.ECS_SERVICE }}
     # - name: Fill in the new image ID in the Amazon ECS task definition
     #   id: task-def
     #   uses: aws-actions/amazon-ecs-render-task-definition@v1
