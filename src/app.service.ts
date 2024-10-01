@@ -5,7 +5,6 @@ export class AppService {
   getHello() {
     return {
       body: 'app-server',
-      env: '' + process.env.environment,
       autodeploy: 'yep',
     };
   }
