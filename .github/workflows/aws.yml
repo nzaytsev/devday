@@ -50,7 +50,8 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
     environment: production
-
+    permissions:
+      issues: write
     steps:
       - uses: trstringer/manual-approval@v1
         with:
