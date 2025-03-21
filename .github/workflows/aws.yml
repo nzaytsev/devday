@@ -54,6 +54,7 @@ jobs:
       issues: write
     steps:
       - uses: trstringer/manual-approval@v1
+        timeout-minutes: 1
         with:
           secret: ${{ github.TOKEN }}
           approvers: nzaytsev
@@ -61,7 +62,6 @@ jobs:
           issue-title: "Deploying v1.3.5 to prod from staging"
           issue-body: "Please approve or deny the deployment of version v1.3.5."
           exclude-workflow-initiator-as-approver: false
-          timeout-minutes: 2
           additional-approved-words: ''
           additional-denied-words: ''
       - name: Checkout
@@ -87,8 +87,8 @@ jobs:
           # push it to ECR so that it can
           # be deployed to ECS.
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:latest . -f opt-tools/dockerfile
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
-          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:latest" >> $GITHUB_OUTPUT
+          # docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
+          # echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:latest" >> $GITHUB_OUTPUT
 
       # - name: Deploy to ECS cluster
       #   id: deploy
